@@ -5,9 +5,9 @@ ToDo List using MEAN Stack
 ----
 **Topics Covered**
 _Express Middleware
-Mongoose
-NodeJs Routing
-Rest call from Server
+Mongoose, 
+NodeJs Routing,
+Rest call from Server, 
 Mongoose Model_
 
 
