@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myController">
+
+  <div class="container">
+    <button style="margin-top:30px;" type="button" class="btn btn-warning" ng-click="hola()">Add In DB(HardCoded Data)</button>
+    <button style="margin-top:30px;" type="button" class="btn btn-success" ng-click="catalog()">Get Catalog Data</button>
+    <button style="margin-top:30px;" type="button" class="btn btn-danger" ng-click="delete()">Delete All Catalog Data</button>
+    <hr />
+    <form class="form-horizontal">
+   <div class="form-group">
+     <label class="control-label col-sm-2" for="email">Name:</label>
+     <div class="col-sm-10">
+       <input type="text" ng-model="worklist.Name" class="form-control" id="email" placeholder="Enter Name" name="Name">
+     </div>
+   </div>
+   <div class="form-group">
+     <label class="control-label col-sm-2" for="pwd">Age:</label>
+     <div class="col-sm-10">
+       <input type="number" ng-model="worklist.Age" class="form-control" id="pwd" placeholder="Enter Age" name="Age">
+     </div>
+   </div>
+   <div class="form-group">
+     <div class="col-sm-offset-2 col-sm-10">
+       <button type="button" class="btn btn-primary" ng-click="add(worklist)">Submit</button>
+     </div>
+   </div>
+ </form>
+    <hr />
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Firstname</th>
+            <th>Age</th>
+            <th>Service Id</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="success" ng-repeat="i in appData">
+            <td>{{i.Name}}</td>
+            <td>{{i.Age}}</td>
+            <td>{{i._id}}</td>
+
+          </tr>
+        </tbody>
+      </table>
+
+
+  </div>
+
+
+  <div class="modal fade" id="modal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">{{title}}</h4>
+          </div>
+          <div class="modal-body">
+            <p>{{desc}}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  <script>
+  var app = angular.module("myApp",[]);
+  app.controller("myController",($scope,$http) => {
+  console.log("Inside controller");
+
+    $scope.hola = () => {
+      console.log("inside function");
+      $http.post("/todos",{"Name":"Angular 4","Age":400}).then((data) => {
+        console.log("Data is "+(data.Name));
+
+      },(error) => {
+        console.log("Error is "+error);
+      });
+
+    };
+
+    $scope.catalog = () => {
+      $http.get("/rest/catalog").then((data) => {
+        $scope.appData = data.data;
+
+      },(error) => {
+        console.log(error);
+
+      });
+    };
+
+    $scope.delete = () => {
+      $http.delete("/delete").then((data) => {
+        $scope.appData = "hola";
+      },(error) => {
+        console.log(error);
+
+      });
+
+    };
+
+    $scope.add = (worklist) => {
+      console.log(worklist);
+      $http.post("/todos/Yogendra Saxena",worklist).then(() => {
+        console.log("Data Inserted Successfully");
+        $scope.title = "Submitted";
+        $scope.desc = "From Submitted Successfully";
+        $('#modal').modal('show');
+
+
+
+      },(error) => {
+        console.log("Some Error");
+        $scope.title = "Error";
+        $scope.desc = "Unable to Submit Data";
+        $('#modal').modal('show');
+
+      });
+
+    }
+
+
+  });
+
+  </script>
+
+
+</body>
+</html>
