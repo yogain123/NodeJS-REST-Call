@@ -4,7 +4,7 @@ NodeJS, ExpressJS, AngularJS, MongoDB
 ToDo List using MEAN Stack
 ----
 **Topics Covered**
-_Express Middleware
+_Express Middleware, 
 Mongoose, 
 NodeJs Routing,
 Rest call from Server, 
