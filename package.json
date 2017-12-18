@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "count-object-value": "^2.0.0",
     "ejs": "^2.5.7",
     "html": "^1.0.0",
     "https": "^1.0.0",
