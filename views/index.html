@@ -7,10 +7,15 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+  </script>
 </head>
 <body ng-app="myApp" ng-controller="myController">
 
   <div class="container">
+    {{date}}<hr />
+    {{formattedDate}}
     <button style="margin-top:30px;" type="button" class="btn btn-warning" ng-click="hola()">Add In DB(HardCoded Data)</button>
     <button style="margin-top:30px;" type="button" class="btn btn-success" ng-click="catalog()">Get Catalog Data</button>
     <button style="margin-top:30px;" type="button" class="btn btn-danger" ng-click="delete()">Delete All Catalog Data</button>
@@ -133,6 +138,15 @@
       });
 
     }
+
+    $scope.init = () => {
+        $scope.date = new Date();
+        let momenttt = moment();
+        $scope.formattedDate = momenttt.format("DD, MM YYYY");
+
+    }
+
+   $scope.init();
 
 
   });
