@@ -23,7 +23,7 @@ MongoClient.connect("mongodb://localhost:27017/TodoApp", (err, db) => {
 
     console.log(JSON.stringify(res.ops, undefined, 3));
 
-  })
+  });
 
 
   db.collection("Users").insertOne(myobjusers, (err, res) => {
@@ -34,7 +34,7 @@ MongoClient.connect("mongodb://localhost:27017/TodoApp", (err, db) => {
 
     console.log(JSON.stringify(res.ops[0]._id.getTimestamp(), undefined, 3));
 
-  })
+  });
 
   db.close();
-})
+});

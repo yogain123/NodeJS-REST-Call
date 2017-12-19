@@ -9,7 +9,7 @@ MongoClient.connect("mongodb://localhost:27017/TodoApp", (err, db) => {
     db.collection("Todos").findOne({}, function (err, result) {
         if (err) throw err;
         console.log(result.name);
-    })
+    });
 
     db.close();
-})
+});
