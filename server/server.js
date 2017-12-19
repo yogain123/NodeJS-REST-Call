@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 var routing = require("./routing");
 
 
-app.use(express.static('views'));
+app.use(express.static('views/public'));
 app.use(bodyParser.json());
 
 
