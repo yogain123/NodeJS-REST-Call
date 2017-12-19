@@ -92,10 +92,10 @@
 
       $scope.hola = () => {
         console.log("inside function");
-        $http.post("/todos", {
+        $http.post("/todos", JSON.stringify({
           "Name": "Angular 4",
           "Age": 400
-        }).then((data) => {
+        })).then((data) => {
           console.log("Data is " + (data.Name));
 
         }, (error) => {
@@ -125,8 +125,8 @@
       };
 
       $scope.add = (worklist) => {
-        console.log(worklist);
-        $http.post("/todos/Yogendra Saxena", worklist).then(() => {
+        //console.log(typeof(JSON.stringify(worklist)));
+        $http.post("/todos/Yogendra Saxena", JSON.stringify(worklist)).then(() => {
           console.log("Data Inserted Successfully");
           $scope.title = "Submitted";
           $scope.desc = "From Submitted Successfully";
