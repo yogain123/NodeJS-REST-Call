@@ -4,8 +4,11 @@ const bodyParser = require('body-parser');
 
 var routing = require("./routing");
 
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 
-app.use(express.static('views/public'));
+
+app.use(express.static('views'));
 app.use(bodyParser.json());
 
 

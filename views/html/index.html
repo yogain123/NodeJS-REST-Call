@@ -9,13 +9,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-
-  </script>
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body ng-app="myApp" ng-controller="myController">
 
   <div class="container">
+    <h1>This is a TODO Application</h1>
     {{date}}
     <hr /> {{formattedDate}}
     <button style="margin-top:30px;" type="button" class="btn btn-warning" ng-click="hola()">Add In DB(HardCoded Data)</button>
@@ -84,79 +84,7 @@
     </div>
   </div>
 
-
-  <script>
-    var app = angular.module("myApp", []);
-    app.controller("myController", ($scope, $http) => {
-      console.log("Inside controller");
-
-      $scope.hola = () => {
-        console.log("inside function");
-        $http.post("/todos", JSON.stringify({
-          "Name": "Angular 4",
-          "Age": 400
-        })).then((data) => {
-          console.log("Data is " + (data.Name));
-
-        }, (error) => {
-          console.log("Error is " + error);
-        });
-
-      };
-
-      $scope.catalog = () => {
-        $http.get("/rest/catalog").then((data) => {
-          $scope.appData = data.data;
-
-        }, (error) => {
-          console.log(error);
-
-        });
-      };
-
-      $scope.delete = () => {
-        $http.delete("/delete").then((data) => {
-          $scope.appData = "hola";
-        }, (error) => {
-          console.log(error);
-
-        });
-
-      };
-
-      $scope.add = (worklist) => {
-        //console.log(typeof(JSON.stringify(worklist)));
-        $http.post("/todos/Yogendra Saxena", JSON.stringify(worklist)).then(() => {
-          console.log("Data Inserted Successfully");
-          $scope.title = "Submitted";
-          $scope.desc = "From Submitted Successfully";
-          $('#modal').modal('show');
-
-
-
-        }, (error) => {
-          console.log("Some Error");
-          $scope.title = "Error";
-          $scope.desc = "Unable to Submit Data";
-          $('#modal').modal('show');
-
-        });
-
-      }
-
-      $scope.init = () => {
-        $scope.date = new Date();
-        let momenttt = moment();
-        $scope.formattedDate = momenttt.format("DD, MM YYYY");
-
-      }
-
-      $scope.init();
-
-
-    });
-  </script>
-
+<script src="../js/app.js"></script>
 
 </body>
 

@@ -88,7 +88,7 @@ router.use((req, res, next) => {
 
 router.get("/", (req, res) => {
 
-  res.render("index.html");
+  res.render("html/index");
 });
 
 
@@ -102,7 +102,7 @@ router.get("/rest/catalog", (req, res) => {
 
 router.get("*", (req, res, next) => {
 
-  res.send("Invalid URL");
+  res.send("Invalid URLLL");
   next();
 
 });
